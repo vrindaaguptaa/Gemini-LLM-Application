@@ -4,7 +4,10 @@ import streamlit as st
 import os
 import google.generativeai as genai
 from PIL import Image
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+# genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+api_key = st.secrets.get("GOOGLE_API_KEY") or os.getenv("GOOGLE_API_KEY")
+
+genai.configure(api_key=api_key)
         
 model=genai.GenerativeModel("gemini-flash-latest")
 def get_genai_response(input, image):
