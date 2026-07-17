@@ -6,7 +6,7 @@ import google.generativeai as genai
 from PIL import Image
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 #function to load gemini pro model and get response
-model=genai.GenerativeModel("gemini-pro")
+model=genai.GenerativeModel("gemini-flash-latest")
 chat=model.start_chat(history=[])
 def get_gemini_response(question):
     response=chat.send_message(question, stream=True)

@@ -5,7 +5,13 @@ import os
 import google.generativeai as genai
 from PIL import Image
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-model=genai.GenerativeModel("gemini-1.5-flash-001-tuning")
+
+for m in genai.list_models():
+    if "generateContent" in m.supported_generation_methods:
+        print(m.name)
+
+        
+model=genai.GenerativeModel("gemini-flash-latest")
 def get_genai_response(input, image):
     if input !="":
       response=model.generate_content([input, image])
